@@ -36,13 +36,13 @@ namespace PDD_APP
         public void inizialize() {
             mainFrame = frame;
 
-            if (DateTime.Now.CompareTo(new DateTime(2016, 06, 9, 0, 0, 0)) >= 0
-                || Utils.iniFile.IniReadValue("General", "secure").Equals("g7h38hg"))
-            {
-                Utils.iniFile.IniWriteValue("General", "secure", "g7h38hg");
-                Environment.Exit(0);
-                return;
-            }
+            //if (DateTime.Now.CompareTo(new DateTime(2016, 06, 9, 0, 0, 0)) >= 0
+            //    || Utils.iniFile.IniReadValue("General", "secure").Equals("g7h38hg"))
+            //{
+            //    Utils.iniFile.IniWriteValue("General", "secure", "g7h38hg");
+            //    Environment.Exit(0);
+            //    return;
+            //}
 
             Admin.setPass("576j9l3");
 
@@ -53,8 +53,8 @@ namespace PDD_APP
 
             Utils.changeFontSize();
 
-            Utils.goToPage("RoleChoosePage");
-            //Utils.goToPage("TestingPage");
+            //Utils.goToPage("RoleChoosePage");
+            Utils.goToPage("TestingPage");
             //Utils.goToPage("SessionConnectingPage");
             //Utils.goToPage("SessionPage");
             //Utils.goToPage("PasswordPage");

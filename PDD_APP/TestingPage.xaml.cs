@@ -24,6 +24,8 @@ namespace PDD_APP
     {
         public Border[] borderTabs;
         public Border[] timeCounter;
+        public Border singleTimeCounter;
+        public Border currentConfirmButton;
         public Student currentStudent;
         public Task[] tasks;
         public Test test;
@@ -40,10 +42,10 @@ namespace PDD_APP
 
             xamlInit();
 
-            //tasksStatic = new Task[] { Task.get(76) };
-            //tasksStatic = Task.getTestingTasks();
-            //studentStatic = new Student("Anvar", "Zakirov", 0);
-            //tasksStatic = Task.getTestingTasks();
+            tasksStatic = new Task[] { Task.get(76) };
+            tasksStatic = Task.getTestingTasks();
+            studentStatic = new Student("Anvar", "Zakirov", 0);
+            tasksStatic = Task.getTestingTasks();
 
             if (tasksStatic != null && studentStatic != null)
                 init(tasksStatic, studentStatic);
@@ -95,11 +97,17 @@ namespace PDD_APP
 
             StackPanel tabControls = tpc.getTabControls(tasks.Length, false, true);
             tabControls.Orientation = Orientation.Horizontal;
-            tabControls.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            mainGrid.Children.Add(tabControls);
+            tabControls.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            headerGrid.Children.Add(tabControls);
+            currentConfirmButton = tpc.getConfirmButton();
+            Border timerBorder = tpc.getTimer("");
+            Grid.SetColumn(currentConfirmButton, 1);
+            Grid.SetColumn(timerBorder, 2);
+            headerGrid.Children.Add(currentConfirmButton);
+            headerGrid.Children.Add(timerBorder);
             mainGrid.Background = new SolidColorBrush(Utils.backgroundColor);
             tpc.changeTab(0);
-            
+
             for (int i = 0; i < tasks.Length; i++) 
             {
                 TabItem tabItem = TestingPageConstructor.getInvisibleTabItem();

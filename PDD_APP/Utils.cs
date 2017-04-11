@@ -21,7 +21,13 @@ namespace PDD_APP
         public static double windowWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
         public static string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Station one\\";
         public static IniFile iniFile = getIniFile();
-        public static Color backgroundColor = Color.FromRgb(8, 111, 139);
+        //public static Color backgroundColor = Color.FromRgb(8, 111, 139);
+        public static Color backgroundColor = Color.FromRgb(195, 226, 245);
+        public static Color headerCellBackgroundColor = Color.FromRgb(195, 226, 245);
+        public static Color activeBackgroundColor = Color.FromRgb(125, 113, 177);
+        public static Color notActiveBackgroundColor = Color.FromRgb(120, 191, 235);
+        public static Color activeAnswerBackgroundColor = Color.FromRgb(175, 203, 31);
+        public static Color notActiveAnswerBackgroundColor = Color.FromRgb(125, 113, 177);
         public static Color darkBlueColor1 = Color.FromRgb(12, 127, 156);
         public static Color darkBlueColor2 =  Color.FromRgb(41, 100, 134);
         public static Color darkBlueColor3 =  Color.FromRgb(17, 91, 116);

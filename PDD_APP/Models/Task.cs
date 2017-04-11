@@ -246,7 +246,7 @@ namespace PDD_APP.Models
 
         public static Task[] getTestingTasks()
         {
-            Task[] tasks = new Task[20];
+            Task[] tasks = new Task[14];
             Random random = new Random();
 
             int count = 0;
@@ -257,7 +257,11 @@ namespace PDD_APP.Models
                     catTasks[i - 1] = Task.get(category, i)[random.Next(5)];
 
                 for (int i = count; i < count + 4; i++)
+                {
+                    if (i > 13)
+                        break;
                     tasks[i] = catTasks[i - count];
+                }
 
                 count += 4;
             }

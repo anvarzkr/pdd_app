@@ -18,12 +18,13 @@ namespace PDD_APP
         private TextBlock[][] textBlockAnses;
         private Border[][] borderBlockAnses;
         private Border[] confirmButtons;
+        private Border currentConfirmButton;
         private bool[] isConfirmed;
         private int[] ansChecked;
         private TestingPage testingPage;
         public bool isAnswersImmediatelyShown = false;
 
-        public TestingPageConstructor(TestingPage testingPage) 
+        public TestingPageConstructor(TestingPage testingPage)
         {
             confirmButtons = new Border[20];
             ansChecked = new int[20];
@@ -38,21 +39,22 @@ namespace PDD_APP
             tabControl = testingPage.tabControl;
         }
 
-        public Grid getTaskContent(Task task, int index) 
+        public Grid getTaskContent(Task task, int index)
         {
             Grid taskContentGrid = new Grid();
             //taskContentGrid.ShowGridLines = true;
 
-            taskContentGrid.RowDefinitions.Add(Utils.getRowDef(GridUnitType.Auto, 1));
+            //taskContentGrid.RowDefinitions.Add(Utils.getRowDef(GridUnitType.Auto, 1));
             taskContentGrid.RowDefinitions.Add(Utils.getRowDef(GridUnitType.Star, 1));
 
-            taskContentGrid.Children.Add(getHeaderGrid(task, index));
+            //taskContentGrid.Children.Add(getHeaderGrid(task, index));
+            getHeaderGrid(task, index);
             taskContentGrid.Children.Add(getAnswersGrid(task, index));
 
             return taskContentGrid;
         }
 
-        private Grid getAnswersGrid(Task task, int index) 
+        private Grid getAnswersGrid(Task task, int index)
         {
             Grid answersGrid = new Grid();
             Grid.SetRow(answersGrid, 1);
@@ -204,7 +206,7 @@ namespace PDD_APP
                 Border imageBorder = new Border();
                 imageBorder.CornerRadius = new CornerRadius(5);
                 imageBorder.ClipToBounds = true;
-                
+
                 Image singleAnswerImage = new Image();
                 String pathToImage = "components/images/" + task.id + "/1." + task.img_format[0];
                 //String pathToImage = "components/images/in.png";
@@ -272,7 +274,7 @@ namespace PDD_APP
                     textBlockAnswerLetter.Foreground = new SolidColorBrush(Utils.darkBlueColor2);
                     textBlockAnswerLetter.Uid = "blue";
                     textBlockAnses[index][i] = textBlockAnswerLetter;
-                    
+
                     //ansChooseBorderLetter.Child = textBlock;
                     Grid.SetColumn(textBlockAnswerLetter, 0);
 
@@ -303,6 +305,123 @@ namespace PDD_APP
                     gridButtons.Children.Add(singleAnswerGrid);
                 }
             }
+            else if (task.type == 4)
+            {
+                Grid answerGrid = new Grid();
+                answersGrid.Children.Add(answerGrid);
+
+                answerGrid.RowDefinitions.Add(Utils.getRowDef(GridUnitType.Star, 85));
+                answerGrid.RowDefinitions.Add(Utils.getRowDef(GridUnitType.Star, 15));
+
+                answerGrid.Margin = new Thickness(5, 0, 5, 10);
+
+                Border imageBorder = new Border();
+                imageBorder.CornerRadius = new CornerRadius(5);
+                imageBorder.ClipToBounds = true;
+
+                Image singleAnswerImage = new Image();
+                String pathToImage = "components/1.png";
+                singleAnswerImage.Source = Utils.getBitmapImage(pathToImage);
+                singleAnswerImage.Stretch = Stretch.Fill;
+                singleAnswerImage.OpacityMask = imageBorder.OpacityMask;
+
+                imageBorder.Child = singleAnswerImage;
+
+                answerGrid.Children.Add(imageBorder);
+
+                Grid gridButtons = new Grid();
+
+                gridButtons.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Star, 1));
+                gridButtons.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Star, 1));
+                gridButtons.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Star, 1));
+
+                Grid.SetRow(gridButtons, 1);
+                gridButtons.ClipToBounds = true;
+                answerGrid.Children.Add(gridButtons);
+
+                for (int i = 0; i < task.answers_count; i++)
+                {
+                    isConfirmed[i] = false;
+                    Grid singleAnswerGrid = new Grid();
+
+                    //singleAnswerGrid.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Auto, 1));
+                    //singleAnswerGrid.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Star, 1));
+
+                    singleAnswerGrid.Tag = new Tuple<Tuple<int, int>, int>(new Tuple<int, int>(i + 1, task.right_answer), index);
+                    singleAnswerGrid.MouseUp += ansChooseBorder_MouseUp;
+                    //MessageBox.Show("Clicked (i + 1):" + (i + 1) + " right_answer: " + task.right_answer + " index: " + index);
+
+                    Grid.SetColumn(singleAnswerGrid, i);
+
+                    singleAnswerGrid.Margin = new Thickness(0, 0, 0, 0);
+
+                    Border ansChooseBorderLetter = new Border();
+                    ansChooseBorderLetter.BorderBrush = new SolidColorBrush(Colors.Black);
+                    ansChooseBorderLetter.BorderThickness = new Thickness(4);
+                    ansChooseBorderLetter.Background = new SolidColorBrush(Utils.notActiveAnswerBackgroundColor);
+                    //ansChooseBorderLetter.Margin = new Thickness(10, ((i > 0 && i < 3) ? 10 : 0), 5, ((i > 1 && i < 3) ? 10 : 0));
+                    ansChooseBorderLetter.Margin = new Thickness(((i == 0) ? 0 : 10), 10, ((i == 2) ? 0 : 10), 10);
+                    ansChooseBorderLetter.MouseEnter += border3_MouseEnter;
+                    ansChooseBorderLetter.MouseLeave += border3_MouseLeave;
+                    ansChooseBorderLetter.Tag = new Tuple<Tuple<int, int>, int>(new Tuple<int, int>(i + 1, task.right_answer), index);
+
+
+                    //ansChooseBorder.Width = 50;
+                    //ansChooseBorder.HorizontalAlignment = HorizontalAlignment.Left;
+                    ansChooseBorderLetter.CornerRadius = new CornerRadius(10);
+                    //ansChooseBorder.Tag = new Tuple<int, int>(i + 1, task.right_answer);
+
+                    //Grid doubleColumnGrid = new Grid();
+
+                    //doubleColumnGrid.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Star, 1));
+                    //doubleColumnGrid.ColumnDefinitions.Add(Utils.getColDef(GridUnitType.Star, 4));
+
+                    //ansChooseBorder.MouseUp += ansChooseBorder_MouseUp;
+
+                    TextBlock textBlockAnswerLetter = new TextBlock();
+                    //textBlockAnswerLetter.Text = (char)((int)'А' + i) + "";
+                    textBlockAnswerLetter.Text = "А, Б, В"; //task.ans_text[i]
+                    textBlockAnswerLetter.FontFamily = Utils.stdFontFamily;
+                    //textBlock.FontSize = 30;
+                    textBlockAnswerLetter.FontSize = Utils.fontSize + 24;
+                    textBlockAnswerLetter.FontWeight = FontWeights.Bold;
+                    textBlockAnswerLetter.VerticalAlignment = VerticalAlignment.Center;
+                    textBlockAnswerLetter.HorizontalAlignment = HorizontalAlignment.Center;
+                    textBlockAnswerLetter.Foreground = new SolidColorBrush(Colors.Black);
+                    textBlockAnswerLetter.Uid = "blue";
+                    textBlockAnswerLetter.TextWrapping = TextWrapping.Wrap;
+                    textBlockAnses[index][i] = textBlockAnswerLetter;
+
+                    //ansChooseBorderLetter.Child = textBlock;
+                    Grid.SetColumn(textBlockAnswerLetter, 0);
+
+                    TextBlock textBlockAnswerText = new TextBlock();
+                    textBlockAnswerText.Text = task.ans_text[i];
+                    textBlockAnswerText.FontFamily = Utils.stdFontFamily;
+                    //textBlock.FontSize = 30;
+                    textBlockAnswerText.Padding = new Thickness(10);
+                    textBlockAnswerText.FontSize = Utils.fontSize - 8;
+                    textBlockAnswerText.FontWeight = FontWeights.Normal;
+                    textBlockAnswerText.VerticalAlignment = VerticalAlignment.Center;
+                    textBlockAnswerText.HorizontalAlignment = HorizontalAlignment.Left;
+                    textBlockAnswerText.Foreground = new SolidColorBrush(Colors.Black);
+                    textBlockAnswerText.TextWrapping = TextWrapping.Wrap;
+                    //textBlockAnses[index][i] = textBlockAnswerText;
+                    //ansChooseBorderLetter.Child = textBlock;
+                    //Grid.SetColumn(textBlockAnswerText, 1);
+
+                    //doubleColumnGrid.ShowGridLines = true;
+
+                    //doubleColumnGrid.Children.Add(textBlockAnswerLetter);
+                    //doubleColumnGrid.Children.Add(textBlockAnswerText);
+
+                    ansChooseBorderLetter.Child = textBlockAnswerLetter;
+
+                    singleAnswerGrid.Children.Add(ansChooseBorderLetter);
+
+                    gridButtons.Children.Add(singleAnswerGrid);
+                }
+            }
 
             return answersGrid;
         }
@@ -318,7 +437,7 @@ namespace PDD_APP
                 || ansChecked[tuple.Item2] == tuple2.Item1)
                 return;
 
-            ((Border)sender).Background = new SolidColorBrush(Utils.backgroundColor);
+            ((Border)sender).Background = new SolidColorBrush(Utils.notActiveAnswerBackgroundColor);
         }
 
         void border3_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -329,17 +448,19 @@ namespace PDD_APP
             if (testingPage.test.answered[tuple.Item2] != Test.ANSWER.NOT_ANSWERED)
                 return;
 
-            ((Border)ansChooseBorder).Background = new SolidColorBrush(Utils.lightBlueColor1);
+            ((Border)ansChooseBorder).Background = new SolidColorBrush(Utils.activeAnswerBackgroundColor);
         }
 
         void ansChooseBorder_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Tuple<Tuple<int, int>, int> tuple;
+            bool isGrid = false;
 
             try
             {
                 Grid ansChooseBorder = (Grid)sender;
                 tuple = (Tuple<Tuple<int, int>, int>)ansChooseBorder.Tag;
+                isGrid = true;
                 if (testingPage.test.answered[tuple.Item2] != Test.ANSWER.NOT_ANSWERED)
                     return;
             }
@@ -348,7 +469,7 @@ namespace PDD_APP
                 tuple = (Tuple<Tuple<int, int>, int>)ansChooseBorder.Tag;
                 if (testingPage.test.answered[tuple.Item2] != Test.ANSWER.NOT_ANSWERED)
                     return;
-                ansChooseBorder.Background = new SolidColorBrush(Utils.backgroundColor);
+                ansChooseBorder.Background = new SolidColorBrush(Utils.activeAnswerBackgroundColor);
             }
             confirmButtons[tuple.Item2].Background = new SolidColorBrush(Utils.darkRedColor2);
 
@@ -364,30 +485,38 @@ namespace PDD_APP
             {
                 for (int j = 0; j < textBlockAnses[tuple.Item2].Length; j++)
                 {
+                    if (textBlockAnses[tuple.Item2][j] == null)
+                        continue;
                     if (textBlockAnses[tuple.Item2][j].Uid.Equals("blue"))
                     {
-                        textBlockAnses[tuple.Item2][j].Foreground = new SolidColorBrush(Utils.darkBlueColor2);
+                        textBlockAnses[tuple.Item2][j].Foreground = new SolidColorBrush(Colors.Black);
                     }
                     else
                     {
-                        textBlockAnses[tuple.Item2][j].Foreground = new SolidColorBrush(Colors.White);
+                        textBlockAnses[tuple.Item2][j].Foreground = new SolidColorBrush(Colors.Black);
                     }
+                    textBlockAnses[tuple.Item2][j].FontSize = Utils.fontSize + 25;
+                    if (testingPage.tasks[tuple.Item2].type > 3)
+                        ((Border)textBlockAnses[tuple.Item2][j].Parent).Background = new SolidColorBrush(Utils.notActiveAnswerBackgroundColor);
                 }
-                textBlockAnses[tuple.Item2][ansTuple.Item1 - 1].Foreground = new SolidColorBrush(Colors.Red);
+                textBlockAnses[tuple.Item2][ansTuple.Item1 - 1].Foreground = new SolidColorBrush(Colors.Black);
+                textBlockAnses[tuple.Item2][ansTuple.Item1 - 1].FontSize = Utils.fontSize + 35;
+                if (testingPage.tasks[tuple.Item2].type > 3)
+                    ((Border)textBlockAnses[tuple.Item2][ansTuple.Item1 - 1].Parent).Background = new SolidColorBrush(Utils.activeAnswerBackgroundColor);
             }
-            else 
+            else
             {
                 for (int j = 0; j < borderBlockAnses[tuple.Item2].Length; j++)
                 {
-                    borderBlockAnses[tuple.Item2][j].Background = new SolidColorBrush(Utils.backgroundColor);
+                    borderBlockAnses[tuple.Item2][j].Background = new SolidColorBrush(Utils.notActiveAnswerBackgroundColor);
                 }
-                borderBlockAnses[tuple.Item2][ansTuple.Item1 - 1].Background = new SolidColorBrush(Utils.lightBlueColor1);
+                borderBlockAnses[tuple.Item2][ansTuple.Item1 - 1].Background = new SolidColorBrush(Colors.Black);
             }
             ansChecked[tuple.Item2] = ansTuple.Item1;
-            
+
         }
 
-        private Grid getHeaderGrid(Task task, int index) 
+        private Grid getHeaderGrid(Task task, int index)
         {
             Grid headerGrid = new Grid();
             //headerGrid.ShowGridLines = true;
@@ -398,9 +527,9 @@ namespace PDD_APP
 
             TextBlock[] textBlocks = new TextBlock[3];
             Border[] border = new Border[3];
-            
 
-            for (int i = 0; i < 3; i++){
+
+            for (int i = 0; i < 3; i++) {
                 border[i] = new Border();
                 border[i].CornerRadius = new CornerRadius(10);
                 border[i].BorderThickness = new Thickness(1);
@@ -442,7 +571,11 @@ namespace PDD_APP
                 return;
 
             if (ansChecked[tuple.Item1] != 0)
-                border.Background = new SolidColorBrush(Utils.darkRedColor1);
+            {
+                border.Background = new SolidColorBrush(Utils.activeAnswerBackgroundColor);
+                border.BorderBrush = new SolidColorBrush(Colors.Black);
+                ((TextBlock)border.Child).Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
 
         void ConfirmButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
@@ -454,7 +587,11 @@ namespace PDD_APP
                 return;
 
             if (ansChecked[tuple.Item1] != 0)
-                border.Background = new SolidColorBrush(Utils.darkRedColor2);
+            {
+                border.Background = new SolidColorBrush(Utils.notActiveAnswerBackgroundColor);
+                border.BorderBrush = new SolidColorBrush(Colors.White);
+                ((TextBlock)border.Child).Foreground = new SolidColorBrush(Colors.White);
+            }
         }
 
         void ConfirmButton_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -508,12 +645,12 @@ namespace PDD_APP
             }
         }
 
-        public StackPanel getTabControls(int tabsCount, Boolean withText, Boolean isClickable) 
+        public StackPanel getTabControls(int tabsCount, Boolean withText, Boolean isClickable)
         {
             if (testingPage.test.answered == null)
                 return null;
             StackPanel tabPanel = new StackPanel();
-            tabPanel.Margin = new Thickness(0, 5, 0, 0);
+            tabPanel.Margin = new Thickness(0, 20, 0, 0);
             tabPanel.Orientation = Orientation.Vertical;
             Grid.SetColumn(tabPanel, 0);
 
@@ -543,22 +680,22 @@ namespace PDD_APP
 
             double k = Utils.windowWidth / Utils.fixedWindowWidth;
 
-            for (int i = 0; i < tabsCount; i++) 
+            for (int i = 0; i < tabsCount; i++)
             {
                 Border borderOut = new Border();
-                borderOut.BorderThickness = new Thickness(2);
-                borderOut.BorderBrush = new SolidColorBrush(Utils.ansNotCheckedColor);
-                borderOut.CornerRadius = new CornerRadius(8);
+                borderOut.BorderThickness = new Thickness(4);
+                borderOut.BorderBrush = new SolidColorBrush(Colors.White);
+                borderOut.CornerRadius = new CornerRadius(5);
                 borderOut.Margin = new Thickness(10 * k, 0, 10 * k, 0);
                 Border border = new Border();
                 borderOut.Child = border;
                 testingPage.borderTabs[i] = border;
 
-                //border.BorderBrush = new SolidColorBrush(Utils.backgroundColor);
-                border.BorderThickness = new Thickness(6);
+                border.BorderBrush = new SolidColorBrush(Colors.White);
+                border.BorderThickness = new Thickness(0);
                 border.CornerRadius = new CornerRadius(4);
 
-                
+
 
                 border.Width = 50 * k;
                 border.Height = 50 * k;
@@ -572,14 +709,14 @@ namespace PDD_APP
                     border.MouseEnter += border_MouseEnter;
                     border.MouseLeave += border_MouseLeave;
                 }
-                
+
                 TextBlock textBlock = new TextBlock();
                 textBlock.Text = (i + 1).ToString();
                 //textBlock.FontSize = 30;
                 textBlock.FontSize = Utils.fontSize + (6 * k);
                 textBlock.FontFamily = Utils.stdFontFamily;
                 //textBlock.FontWeight = FontWeights.Bold;
-                textBlock.Foreground = new SolidColorBrush(Utils.darkBlueColor2);
+                textBlock.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 textBlock.HorizontalAlignment = HorizontalAlignment.Center;
                 textBlock.VerticalAlignment = VerticalAlignment.Center;
 
@@ -594,19 +731,27 @@ namespace PDD_APP
 
         void border_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Border border = (Border) sender;
+            Border border = (Border)sender;
+
+            if (currentTab == border)
+                return;
+
             int id = (int)border.Tag;
 
             tabChangeBorderAndBackground(border, id);
 
-            border.BorderThickness = new Thickness(6);
-                
+            border.BorderThickness = new Thickness(0); //6
+
         }
 
         void border_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (currentTab != ((Border)sender))
-                ((Border)sender).BorderThickness = new Thickness(5);
+            Border border = (Border)sender;
+
+            if (currentTab == border)
+                return;
+
+            border.BorderThickness = new Thickness(2); //5
         }
 
         void border_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -614,7 +759,7 @@ namespace PDD_APP
             changeTab((int)((Border)sender).Tag);
         }
 
-        public void changeTab(int tabIndex) 
+        public void changeTab(int tabIndex)
         {
             if (tabIndex >= 4 && tabIndex <= 20 && !testingPage.isHelp2Used && !isAnswersImmediatelyShown)
             {
@@ -626,26 +771,33 @@ namespace PDD_APP
                 return;
             if (currentTab != null)
             {
+                currentTab.BorderThickness = new Thickness(0);
                 int id = (int)currentTab.Tag;
                 tabChangeBorderAndBackground(currentTab, id);
                 ((TextBlock)currentTab.Child).FontWeight = FontWeights.Normal;
             }
+
+            changeConfirmButtonState(tabIndex);
+
             currentTab = testingPage.borderTabs[tabIndex];
             ((TextBlock)currentTab.Child).FontWeight = FontWeights.Bold;
+            ((TextBlock)currentTab.Child).Foreground = new SolidColorBrush(Colors.White);
+            currentTab.Background = new SolidColorBrush(Utils.activeBackgroundColor);
             tabControl.SelectedIndex = tabIndex;
         }
 
-        private void tabChangeBorderAndBackground(Border border, int id) 
+        private void tabChangeBorderAndBackground(Border border, int id)
         {
             TextBlock textBlock = (TextBlock)border.Child;
+            textBlock.Foreground = new SolidColorBrush(Colors.Black);
             /*if (textBlock != null)
                 textBlock.Foreground = new SolidColorBrush(Utils.darkBlueColor);*/
             border.Opacity = 1;
             if (testingPage.test.answered[id] == Test.ANSWER.NOT_ANSWERED)
             {
-                border.Opacity = 0.5;
-                border.Background = new SolidColorBrush(Utils.ansNotCheckedColor);
-                border.BorderBrush = new SolidColorBrush(Utils.darkBlueColor1);
+                //border.Opacity = 0.5;
+                border.Background = new SolidColorBrush(Utils.notActiveBackgroundColor);
+                //border.BorderBrush = new SolidColorBrush(Utils.darkBlueColor1);
                 /*if (textBlock != null)
                     textBlock.Foreground = new SolidColorBrush(Colors.White);*/
             }
@@ -654,27 +806,96 @@ namespace PDD_APP
                 if (isAnswersImmediatelyShown)
                     textBlock.Foreground = new SolidColorBrush(Colors.White);
                 border.Background = new SolidColorBrush(Utils.darkGreenColor1);
-                border.BorderBrush = new SolidColorBrush(Utils.darkGreenColor2);
+                //border.BorderBrush = new SolidColorBrush(Utils.darkGreenColor2);
             }
             else
             {
                 border.Background = new SolidColorBrush(Utils.darkRedColor1);
-                border.BorderBrush = new SolidColorBrush(Utils.darkRedColor2);
+                //border.BorderBrush = new SolidColorBrush(Utils.darkRedColor2);
             }
-            if ( (testingPage.test.answered[id] == Test.ANSWER.RIGHT
-                || testingPage.test.answered[id] == Test.ANSWER.WRONG) 
+            if ((testingPage.test.answered[id] == Test.ANSWER.RIGHT
+                || testingPage.test.answered[id] == Test.ANSWER.WRONG)
                 && !isAnswersImmediatelyShown) {
-                    border.Background = new SolidColorBrush(Utils.ansNotCheckedColor);
-                    border.BorderBrush = new SolidColorBrush(Utils.darkBlueColor1);
+                Console.WriteLine("hey there");
+                border.Background = new SolidColorBrush(Utils.activeBackgroundColor);
+                //border.BorderBrush = new SolidColorBrush(Colors.White);
             }
         }
 
-        public static TabItem getInvisibleTabItem() 
+        public static TabItem getInvisibleTabItem()
         {
             TabItem tabItem = new TabItem();
             tabItem.Visibility = Visibility.Collapsed;
 
             return tabItem;
+        }
+
+
+        public Border getConfirmButton() {
+            Border border = new Border();
+
+            border.BorderBrush = new SolidColorBrush(Colors.White);
+            border.BorderThickness = new Thickness(4);
+            border.CornerRadius = new CornerRadius(5);
+            border.Background = new SolidColorBrush(Utils.activeBackgroundColor);
+            border.Margin = new Thickness(0, 20, 0, 0);
+
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = "Пропустить";
+            textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+            textBlock.VerticalAlignment = VerticalAlignment.Center;
+            textBlock.Foreground = new SolidColorBrush(Colors.White);
+            textBlock.FontSize = Utils.fontSize + 5;
+
+            border.Child = textBlock;
+
+            //border.Tag = new Tuple<int, int>(index, task.right_answer);
+            border.MouseUp += ConfirmButton_MouseUp;
+            border.MouseEnter += ConfirmButton_MouseEnter;
+            border.MouseLeave += ConfirmButton_MouseLeave;
+            currentConfirmButton = border;
+
+            return border;
+        }
+
+        public void changeConfirmButtonState(int tabIndex) {
+            testingPage.currentConfirmButton.Tag = new Tuple<int, int>(tabIndex, testingPage.tasks[tabIndex].right_answer);
+
+            Tuple<int, int> tuple = (Tuple<int, int>)testingPage.currentConfirmButton.Tag;
+
+            switch (testingPage.test.answered[tuple.Item1]) {
+                case Test.ANSWER.NOT_ANSWERED:
+                    testingPage.currentConfirmButton.Background = new SolidColorBrush(Utils.notActiveAnswerBackgroundColor);
+                    testingPage.currentConfirmButton.BorderBrush = new SolidColorBrush(Colors.White);
+                    ((TextBlock)testingPage.currentConfirmButton.Child).Foreground = new SolidColorBrush(Colors.White);
+                    break;
+                default:
+                    testingPage.currentConfirmButton.Background = new SolidColorBrush(Utils.activeAnswerBackgroundColor);
+                    testingPage.currentConfirmButton.BorderBrush = new SolidColorBrush(Colors.Black);
+                    ((TextBlock)testingPage.currentConfirmButton.Child).Foreground = new SolidColorBrush(Colors.Black);
+                    break;
+            }
+        }
+
+        public Border getTimer(string s)
+        {
+            Border border = new Border();
+            
+            border.BorderThickness = new Thickness(0);
+            border.Margin = new Thickness(0, 20, 0, 0);
+
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = "12:03" + s;
+            textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+            textBlock.VerticalAlignment = VerticalAlignment.Center;
+            textBlock.Foreground = new SolidColorBrush(Colors.Black);
+            textBlock.FontSize = Utils.fontSize + 10;
+
+            border.Child = textBlock;
+
+            testingPage.singleTimeCounter = border;
+
+            return border;
         }
     }
 }

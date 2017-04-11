@@ -49,11 +49,13 @@ namespace PDD_APP
             MainWindow.mainFrame.Dispatcher.BeginInvoke(new Action(delegate
             {
                 timeCounterPassed += 1;
-                for (int i = 0; i < answered.Length; i++)
-                {
-                    TextBlock textBlock = (TextBlock)testingPage.timeCounter[i].Child;
-                    textBlock.Text = Utils.getTimeFromInt(TEST_TIME - testingPage.test.timeCounterPassed);
-                }
+                //for (int i = 0; i < answered.Length; i++)
+                //{
+                //    TextBlock textBlock = (TextBlock)testingPage.timeCounter[i].Child;
+                //    textBlock.Text = Utils.getTimeFromInt(TEST_TIME - testingPage.test.timeCounterPassed);
+                //}
+                TextBlock textBlock = (TextBlock)testingPage.singleTimeCounter.Child;
+                textBlock.Text = Utils.getTimeFromInt(TEST_TIME - testingPage.test.timeCounterPassed);
                 if (timeCounterPassed >= TEST_TIME) 
                 {
                     if (timer != null)

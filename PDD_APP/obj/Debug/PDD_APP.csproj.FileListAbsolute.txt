@@ -84,3 +84,46 @@ C:\Users\Anvar Zakirov\Documents\Visual Studio 2015\Projects\pdd_app\PDD_APP\obj
 C:\Users\Anvar Zakirov\Documents\Visual Studio 2015\Projects\pdd_app\PDD_APP\obj\Debug\Station One.g.resources
 C:\Users\Anvar Zakirov\Documents\Visual Studio 2015\Projects\pdd_app\PDD_APP\obj\Debug\Station One.exe
 C:\Users\Anvar Zakirov\Documents\Visual Studio 2015\Projects\pdd_app\PDD_APP\obj\Debug\Station One.pdb
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\Station One.exe.config
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\Station One.exe
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\Station One.pdb
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\EntityFramework.dll
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\Newtonsoft.Json.dll
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\System.Data.SQLite.dll
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\EntityFramework.xml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\Newtonsoft.Json.xml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\bin\Debug\System.Data.SQLite.xml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\PDD_APP.csprojResolveAssemblyReference.cache
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\lastResultPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\MainWindow.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\mistakesClarificationPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\PasswordPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\ResultPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\RoleChoosePage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SessionConnectingPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SessionPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SessionPrintingPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SettingsPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\TestingPage.baml
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\lastResultPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\MainWindow.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\mistakesClarificationPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\PasswordPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\ResultPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\RoleChoosePage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SessionConnectingPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SessionPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SessionPrintingPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\SettingsPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\TestingPage.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\App.g.cs
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\Station One_MarkupCompile.cache
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\Station One.g.resources
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\PDD_APP.Properties.Resources.resources
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\PDD_APP.csproj.GenerateResource.Cache
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\Station One.exe
+C:\Users\anvarzkr\Documents\Visual Studio 2017\Projects\pdd_app\PDD_APP\obj\Debug\Station One.pdb
