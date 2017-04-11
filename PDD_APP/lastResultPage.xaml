@@ -1,0 +1,211 @@
+﻿<Page x:Class="PDD_APP.lastResultPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="lastResultPage">
+
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Border x:Name="resultTextBorder" 
+                Grid.Row="0"
+                BorderBrush="White"
+                BorderThickness="1"
+                CornerRadius="6"
+                HorizontalAlignment="Center"
+                Width="400"
+                Padding="10"
+                Margin="10">
+
+            <TextBlock x:Name="resultText"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Foreground="White"
+                        FontSize="40"
+                        FontWeight="500"
+                        HorizontalAlignment="Center">
+                ИТОГИ
+            </TextBlock>
+        </Border>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Border x:Name="fnameBlockBorder"
+                        Padding="10"
+                        Margin="20"
+                        Width="400"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="fnameBlock"
+                               Foreground="White"
+                               FontSize="25"
+                               HorizontalAlignment="Center"></TextBlock>
+                </Border>
+                <Border x:Name="lnameBlockBorder"
+                        Padding="10"
+                        Margin="20"
+                        Width="400"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="lnameBlock"
+                               Foreground="White"
+                               FontSize="25"
+                               HorizontalAlignment="Center"></TextBlock>
+                </Border>
+                <Border x:Name="idBlockBorder"
+                        Padding="10"
+                        Margin="20"
+                        Width="400"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="idBlock"
+                               Foreground="White"
+                               FontSize="25"
+                               HorizontalAlignment="Center"></TextBlock>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0, 5"
+                        HorizontalAlignment="Center">
+                <Border x:Name="border1"
+                        Padding="10"
+                        Width="500"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="border1Text"
+                               HorizontalAlignment="Center"
+                               Foreground="White"
+                               FontSize="20">ОБЩЕЕ ВРЕМЯ</TextBlock>
+                </Border>
+                <Border x:Name="border11"
+                        Padding="10"
+                        Width="120"
+                        Margin="20, 0, 0, 0"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="timeBlock"
+                               Foreground="White"
+                               FontSize="20"
+                               HorizontalAlignment="Center"></TextBlock>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0, 5">
+                <Border x:Name="border2"
+                        Padding="10"
+                        Width="500"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="border2Text"
+                               HorizontalAlignment="Center"
+                               Foreground="White"
+                               FontSize="20">ПРАВИЛЬНЫХ ОТВЕТОВ</TextBlock>
+                </Border>
+                <Border x:Name="border12"
+                        Padding="10"
+                        Width="120"
+                        Margin="20, 0, 0, 0"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="rAnsBlock"
+                               Foreground="White"
+                               FontSize="20"
+                               HorizontalAlignment="Center"></TextBlock>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0, 5">
+                <Border x:Name="border3"
+                        Padding="10"
+                        Width="500"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="border3Text"
+                               HorizontalAlignment="Center"
+                               Foreground="White"
+                               FontSize="20">НЕПРАВИЛЬНЫХ ОТВЕТОВ</TextBlock>
+                </Border>
+                <Border x:Name="border13"
+                        Padding="10"
+                        Width="120"
+                        Margin="20, 0, 0, 0"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1">
+                    <TextBlock x:Name="wAnsBlock"
+                               Foreground="White"
+                               FontSize="20"
+                               HorizontalAlignment="Center"></TextBlock>
+                </Border>
+            </StackPanel>
+            <Border x:Name="resendButton"
+                    Margin="0, 20"
+                    Padding="10"
+                    Width="400"
+                    CornerRadius="4"
+                    BorderBrush="White"
+                    BorderThickness="1"
+                    MouseUp="resendButton_MouseUp"
+                    MouseEnter="resendButton_MouseEnter"
+                    MouseLeave="resendButton_MouseLeave">
+                <TextBlock Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                    ОТПРАВИТЬ РЕЗУЛЬТАТЫ
+                </TextBlock>
+            </Border>
+            <Border x:Name="helpButton"
+                    Margin="0, 20"
+                    Padding="10"
+                    Width="400"
+                    CornerRadius="4"
+                    BorderBrush="White"
+                    BorderThickness="1"
+                    MouseUp="helpButton_MouseUp"
+                    MouseEnter="menuButton_MouseEnter"
+                    MouseLeave="menuButton_MouseLeave">
+                <TextBlock Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                    ПОЗВАТЬ СУДЬЮ
+                </TextBlock>
+            </Border>
+            <Border x:Name="menuButton"
+                    Margin="0, 20"
+                    Padding="10"
+                    Width="400"
+                    CornerRadius="4"
+                    BorderBrush="White"
+                    BorderThickness="1"
+                    MouseUp="menuButton_MouseUp"
+                    MouseEnter="menuButton_MouseEnter"
+                    MouseLeave="menuButton_MouseLeave"
+                    Visibility="Collapsed">
+                <TextBlock Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                    В ГЛАВНОЕ МЕНЮ
+                </TextBlock>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,63 @@
+﻿<Page x:Class="PDD_APP.RoleChoosePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="RoleChoosePage">
+
+    <Grid x:Name="mainGrid">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Border x:Name="menuAdminButton"
+                    Margin="0, 20"
+                    Padding="10"
+                    CornerRadius="4"
+                    BorderBrush="White"
+                    BorderThickness="1"
+                    MouseUp="menuAdminButton_MouseUp"
+                    MouseEnter="menuButton_MouseEnter"
+                    MouseLeave="menuButton_MouseLeave">
+                <TextBlock x:Name="menuAdminText"
+                           Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                    Вход для администратора
+                </TextBlock>
+            </Border>
+            <Border x:Name="menuStudentButton"
+                    Margin="0, 20"
+                    Padding="10"
+                    CornerRadius="4"
+                    BorderBrush="White"
+                    BorderThickness="1"
+                    MouseUp="menuStudentButton_MouseUp"
+                    MouseEnter="menuButton_MouseEnter"
+                    MouseLeave="menuButton_MouseLeave">
+                <TextBlock x:Name="menuStudentText"
+                           Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                    Вход для участника
+                </TextBlock>
+            </Border>
+            <Border x:Name="backButton"
+                        Margin="0, 20"
+                        Padding="10"
+                        CornerRadius="4"
+                        BorderBrush="White"
+                        BorderThickness="1"
+                        MouseUp="backButton_MouseUp"
+                        MouseEnter="backButton_MouseEnter"
+                        MouseLeave="backButton_MouseLeave">
+                <TextBlock x:Name="backButtonText"
+                           Foreground="White"
+                           FontSize="20"
+                           HorizontalAlignment="Center">
+                        Выход
+                </TextBlock>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>
